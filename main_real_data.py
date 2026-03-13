@@ -161,7 +161,8 @@ idx2se = {i: node for i, node in enumerate(list(se2combo.keys()))}
 val_test_size = 0.05
 n_genes = len(node2idx)  # 19081
 n_drugs = len(unique_drugs)  # 645
-n_drugdrug_rel_types = len(se2combo)  # 1317
+# n_drugdrug_rel_types = len(se2combo)  # 1317
+n_drugdrug_rel_types = 30
 
 # gene_net is a protein-protein interaction networks. We have used PPI data to construct this network.
 # The adjacency matrix is a (19081*19081) matrix.
