@@ -142,9 +142,9 @@ combo2stitch, combo2se, se2name = load_combo_se(
 net, node2idx = load_ppi(os.path.join("data", "bio-decagon-ppi.csv"))
 stitch2se, se2name_mono = load_mono_se(os.path.join("data", "bio-decagon-mono.csv"))
 stitch2proteins = load_targets(os.path.join("data", "bio-decagon-targets-all.csv"))
-se2class, se2name_class = load_categories(
-    os.path.join("data", "bio-decagon-effectcategories.csv")
-)
+# se2class, se2name_class = load_categories(
+#     os.path.join("data", "bio-decagon-effectcategories.csv")
+# )
 se2combo = load_se_combo(os.path.join('data', 'bio-decagon-combo.csv'))
 
 # Number of unique drugs in drug combinations dataset
