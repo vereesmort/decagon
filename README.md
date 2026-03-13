@@ -82,3 +82,39 @@ Recent versions of Tensorflow, sklearn, networkx, numpy, and scipy are required.
 ## License
 
 Decagon is licensed under the MIT License.
+
+
+
+## Log TensorFlow 2.x upgrade
+1. Updated requirements.txt
+Upgraded TensorFlow from 1.8.0 to >=2.8.0,<3.0.0
+Updated related dependencies (numpy, scikit-learn, scipy, networkx, tensorboard)
+Removed Python 2-only packages (enum34, funcsigs, backports.weakref)
+2. Updated decagon/deep/optimizer.py
+Changed tf.app.flags → tf.compat.v1.app.flags
+Changed tf.train.AdamOptimizer → tf.compat.v1.train.AdamOptimizer
+Changed tf.op_scope → tf.compat.v1.name_scope
+Fixed error message typo ('params' → 'indices')
+3. Updated decagon/deep/model.py
+Changed tf.app.flags → tf.compat.v1.app.flags
+Changed tf.variable_scope → tf.compat.v1.variable_scope
+Changed tf.get_collection → tf.compat.v1.get_collection
+Changed tf.GraphKeys.GLOBAL_VARIABLES → tf.compat.v1.GraphKeys.GLOBAL_VARIABLES
+4. Updated decagon/deep/layers.py
+Changed tf.app.flags → tf.compat.v1.app.flags
+Changed tf.random_uniform → tf.random.uniform
+Changed tf.sparse_retain → tf.sparse.retain
+Changed tf.variable_scope → tf.compat.v1.variable_scope (5 occurrences)
+Changed tf.sparse_tensor_dense_matmul → tf.sparse.sparse_dense_matmul (3 occurrences)
+5. Updated decagon/deep/inits.py
+Changed tf.random_uniform → tf.random.uniform
+6. Updated main_real_data.py
+Added tf.compat.v1.disable_v2_behavior() after TensorFlow import
+Changed tf.app.flags → tf.compat.v1.app.flags
+Changed all tf.placeholder → tf.compat.v1.placeholder
+Changed tf.placeholder_with_default → tf.compat.v1.placeholder_with_default
+Changed tf.sparse_placeholder → tf.compat.v1.sparse_placeholder
+Changed tf.Session → tf.compat.v1.Session
+Changed tf.global_variables_initializer → tf.compat.v1.global_variables_initializer
+7. Updated main.py
+Same changes as main_real_data.py

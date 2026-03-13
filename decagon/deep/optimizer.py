@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 
-flags = tf.app.flags
+flags = tf.compat.v1.app.flags
 FLAGS = flags.FLAGS
 
 
@@ -107,7 +107,7 @@ class DecagonOptimizer(object):
     def _build(self):
         self.cost = self._hinge_loss(self.outputs, self.neg_outputs)
         # self.cost = self._xent_loss(self.outputs, self.neg_outputs)
-        self.optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
+        self.optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
 
         self.opt_op = self.optimizer.minimize(self.cost)
         self.grads_vars = self.optimizer.compute_gradients(self.cost)
@@ -137,7 +137,7 @@ def gather_cols(params, indices, name=None):
     Returns:
         A 2D Tensor. Has the same type as ``params``.
     """
-    with tf.op_scope([params, indices], name, "gather_cols") as scope:
+    with tf.compat.v1.name_scope(name or "gather_cols"):
         # Check input
         params = tf.convert_to_tensor(params, name="params")
         indices = tf.convert_to_tensor(indices, name="indices")
@@ -148,7 +148,7 @@ def gather_cols(params, indices, name=None):
         try:
             indices.get_shape().assert_has_rank(1)
         except ValueError:
-            raise ValueError('\'params\' must be 1D.')
+            raise ValueError('\'indices\' must be 1D.')
 
         # Define op
         p_shape = tf.shape(params)
