@@ -55,7 +55,7 @@ def load_ppi(fname="bio-decagon-ppi.csv"):
     net = nx.Graph()
     net.add_edges_from(edges)
     net.remove_nodes_from(nx.isolates(net))
-    net.remove_edges_from(net.selfloop_edges())
+    net.remove_edges_from(nx.selfloop_edges(net))
     node2idx = {node: i for i, node in enumerate(net.nodes())}
     return net, node2idx
 
